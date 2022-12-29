@@ -5,16 +5,20 @@ if (isset($_POST['submit'])) {
   include('config/crud.php');
   $table = 'users';
   $condition = "username='" . $username . "' and password='" . $password . "'";
-  $read = read($table, "*", true, $condition, 'Login Berhasil');
+  $read = read($table, "*", true, $condition);
   if ($read) {
     session_start();
     $_SESSION['id'] = $read->id;
     $_SESSION['username'] = $read->username;
     if ($read->id_level == 1) {
+      echo ('<script>alert("login admin berhasil")</script>');
       header("location:admin/index.php");
     } else {
+      echo ('<script>alert("login berhasil")</script>');
       header("location:users/index.php");
     }
+  } else {
+    echo ('<script>alert("login gagal")</script>');
   }
 }
 

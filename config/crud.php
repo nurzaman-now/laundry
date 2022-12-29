@@ -19,7 +19,7 @@ function create($table, $column, $value, $message)
   }
 };
 
-function read($table, $column, $add = false, $condition, $message)
+function read($table, $column, $add = false, $condition = null)
 {
   $db = $GLOBALS['db'];
   $sql = "SELECT " . $column . " FROM " . $table;
@@ -28,11 +28,8 @@ function read($table, $column, $add = false, $condition, $message)
   }
   $read = $db->query($sql);
   if ($read->num_rows > 0) {
-    $row = $read->fetch_object();
-    echo ('<script>alert("' . $message . '")</script>');
-    return $row;
+    return $read;
   } else {
-    echo ('<script>alert("Gagal")</script>');
     return false;
   }
 }
