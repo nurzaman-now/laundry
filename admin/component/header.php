@@ -12,10 +12,18 @@
   <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
   <link href="../assets/css/styles.css" rel="stylesheet" />
   <link rel="icon" href="../../images/logo.png">
+  <style>
+    .card {
+      padding: 1.5em .5em .5em;
+      border-radius: 2em;
+      text-align: center;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    }
+  </style>
   <title>Laundry</title>
 </head>
 
-<body>
+<body style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
   <?php
   session_start();
   if ($_SESSION['id_level'] != 1) {

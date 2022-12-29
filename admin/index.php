@@ -4,7 +4,7 @@ include('component/navbar.php')
 ?>
 <!-- Page content-->
 <div class="jumbotron jumbotron-fluid" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
-    <div class="container" style="min-height: 700px;">
+    <div class="container" style="min-height: 650px;">
         <div class="row">
             <div class="col-1 mr-5">
                 <img src="../images/logo.png" width="100" class="d-inline-block align-top rounded-circle">

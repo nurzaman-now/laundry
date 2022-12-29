@@ -14,7 +14,7 @@ if (isset($_POST['update'])) {
 $read = read($table, "*");
 ?>
 <!-- Page content-->
-<div class="container-fluid pt-3" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
+<div class="container-fluid pt-3">
   <div class="card">
     <div class="card-body">
       <section class="ftco-section">

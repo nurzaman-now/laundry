@@ -26,7 +26,7 @@ if (isset($_GET['id_delete'])) {
 $read = read($table, "*");
 ?>
 <!-- Page content-->
-<div class="container-fluid pt-3" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
+<div class="container-fluid pt-3">
   <div class="card mb-2">
     <div class="card-body">
       <?php if (isset($_GET['id_update'])) {

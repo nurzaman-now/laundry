@@ -16,7 +16,7 @@ include('component/navbar.php');
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <div class="card" style="width: 25rem;">
+        <div class="card" style="width: 25rem; border-radius: 5%;">
           <div class="card-body">
             <form action="" method="POST">
               <h2 class="card-title">Register</h2>

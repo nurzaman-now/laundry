@@ -8,6 +8,13 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="icon" href="../images/logo.png">
+  <style>
+    .card {
+      padding: 1.5em .5em .5em;
+      border-radius: 2em;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    }
+  </style>
   <title>Laundry</title>
 </head>
 
