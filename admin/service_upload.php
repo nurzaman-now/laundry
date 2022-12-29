@@ -81,7 +81,7 @@ $read = read($table, "*",);
         <!-- menambah data -->
       <?php
       } else { ?>
-        <h4 class="card-title">Menambahakan Service Upload</h4>
+        <h4 class="card-title">Menambahkan Service Upload</h4>
         <form method="POST">
           <div class="row">
             <div class="col">
@@ -157,7 +157,7 @@ $read = read($table, "*",);
                         echo "<td>" . $row->service_name . "</td>";
                         echo "<td>" . $row->dry_price . "</td>";
                         echo "<td>" . $row->laundry_price . "</td>";
-                        echo  "<td><a href='?id_update=" . $row->id_service_upload . "' class='btn btn-warning'>Update</a><a href='?id_delete=" . $row->id_service_upload . "' class='btn btn-danger ml-2'>Delete</a></td></tr>";
+                        echo  "<td><a href='?id_update=" . $row->id_service_upload . "' class='btn btn-warning'><i class='fa fa-pencil' aria-hidden='true'></i></a><a href='?id_delete=" . $row->id_service_upload . "' class='btn btn-danger ml-2'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
                       }
                     }
                     ?>
@@ -168,11 +168,6 @@ $read = read($table, "*",);
           </div>
         </div>
       </section>
-
-      <script src="../assets/js/jquery.min.js"></script>
-      <script src="../assets/js/popper.js"></script>
-      <script src="../assets/js/bootstrap.min.js"></script>
-      <script src="../assets/js/main.js"></script>
     </div>
   </div>
 </div>

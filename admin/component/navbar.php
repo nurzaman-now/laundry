@@ -26,8 +26,8 @@ if (strpos($location, 'users')) {
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $index ?>" href="index.php">Dashboard</a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $st ?>" href="service_type.php">Service Type</a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $su ?>" href="service_upload.php">Service Add</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $order ?>" href="#!">Order</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $users ?>" href="#!">Users</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $order ?>" href="order.php">Order</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $users ?>" href="users.php">Users</a>
       <a class="list-group-item list-group-item-action list-group-item-danger p-3" href="../logout.php">Logout</a>
     </div>
   </div>
