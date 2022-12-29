@@ -4,21 +4,52 @@ include('component/navbar.php');
 
 include('../config/crud.php');
 $table = 'service_type';
+if (isset($_POST['submit'])) {
+  extract($_POST);
+  $column = "service_type";
+  $value = "'" . $service_type . "'";
+  $create = create($table, $column, $value, 'Berhasil Menambahkan data service type');
+  echo ('<script>window.location= "service_type.php";</script>');
+}
+if (isset($_POST['update'])) {
+  extract($_POST);
+  $column = "service_type='" . $service_type . "'";
+  $condition = "id_service_type=" . $_GET['id_update'];
+  $create = update($table, $column, $condition, 'Berhasil Mengubah data service type');
+  echo ('<script>window.location= "service_type.php";</script>');
+}
+if (isset($_GET['id_delete'])) {
+  $condition = "id_service_type=" . $_GET['id_delete'];
+  $delete = deletedb($table, $condition, "Berhasil menghapus Service type");
+  echo ('<script>window.location= "service_type.php";</script>');
+}
 $read = read($table, "*");
 ?>
 <!-- Page content-->
 <div class="container-fluid pt-3" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
   <div class="card mb-2">
     <div class="card-body">
-      <h4 class="card-title">Menambahakan Service Type</h4>
-      <form>
-        <div class="form-group">
-          <label for="service_type">Service Type</label>
-          <input type="password" class="form-control" id="service_type">
-        </div>
-        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-      </form>
-
+      <?php if (isset($_GET['id_update'])) {
+      ?>
+        <h4 class="card-title">Mengubah Service Type</h4>
+        <form method="POST">
+          <div class="form-group">
+            <label for="service_type">Service Type</label>
+            <input type="text" class="form-control" id="service_type" name="service_type" value="<?php echo ($_GET['service']) ?>" required>
+          </div>
+          <button type="submit" class="btn btn-primary" name="update">Submit</button>
+        </form>
+      <?php
+      } else { ?>
+        <h4 class="card-title">Menambahakan Service Type</h4>
+        <form method="POST">
+          <div class="form-group">
+            <label for="service_type">Service Type</label>
+            <input type="text" class="form-control" id="service_type" name="service_type" required>
+          </div>
+          <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        </form>
+      <?php } ?>
     </div>
   </div>
   <div class="card">
@@ -36,6 +67,7 @@ $read = read($table, "*");
                 <table class="table table-striped">
                   <thead>
                     <tr>
+                      <th>No.</th>
                       <th>Id</th>
                       <th>Service Type</th>
                       <th>Action</th>
@@ -43,12 +75,13 @@ $read = read($table, "*");
                   </thead>
                   <tbody>
                     <?php
-                    $count1 = '0';
+                    $count = '0';
                     while ($row = $read->fetch_object()) {
-                      $count1++;
-                      echo "<tr><td>" . $row->id_service_type . "</td>";
+                      $count++;
+                      echo "<tr><td>" . $count . "</td>";
+                      echo '<td>' . $row->id_service_type . '</td>';
                       echo "<td>" . $row->service_type . "</td>";
-                      echo  "<td><a href='update.php' class='btn btn-warning'>Update</a><a href='delete.php' class='btn btn-danger ml-2'>Delete</a></td></tr>";
+                      echo  "<td><a href='?id_update=" . $row->id_service_type . "&service=" . $row->service_type . "' class='btn btn-warning'>Update</a><a href='?id_delete=" . $row->id_service_type . "' class='btn btn-danger ml-2'>Delete</a></td></tr>";
                     }
                     ?>
                   </tbody>
