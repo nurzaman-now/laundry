@@ -15,3 +15,8 @@
 </head>
 
 <body>
+  <?php
+  session_start();
+  if ($_SESSION['id_level'] != 1) {
+    header("location:../logout.php");
+  }

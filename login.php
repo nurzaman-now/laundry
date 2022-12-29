@@ -6,10 +6,11 @@ if (isset($_POST['submit'])) {
   $table = 'users';
   $condition = "username='" . $username . "' and password='" . $password . "'";
   $read = read($table, "*", $condition);
-  if ($read) {
+  if ($read = $read->fetch_object()) {
     session_start();
     $_SESSION['id'] = $read->id;
     $_SESSION['username'] = $read->username;
+    $_SESSION['id_level'] = $read->id_level;
     if ($read->id_level == 1) {
       echo ('<script>alert("login admin berhasil")</script>');
       header("location:admin/index.php");

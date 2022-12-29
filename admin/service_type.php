@@ -75,13 +75,14 @@ $read = read($table, "*");
                   </thead>
                   <tbody>
                     <?php
-                    $count = '0';
-                    while ($row = $read->fetch_object()) {
-                      $count++;
-                      echo "<tr><td>" . $count . "</td>";
-                      echo '<td>' . $row->id_service_type . '</td>';
-                      echo "<td>" . $row->service_type . "</td>";
-                      echo  "<td><a href='?id_update=" . $row->id_service_type . "&service=" . $row->service_type . "' class='btn btn-warning'>Update</a><a href='?id_delete=" . $row->id_service_type . "' class='btn btn-danger ml-2'>Delete</a></td></tr>";
+                    if ($read->num_rows > 0) {
+                      $count = '1';
+                      while ($row = $read->fetch_object()) {
+                        echo "<tr><td>" . $count++ . "</td>";
+                        echo '<td>' . $row->id_service_type . '</td>';
+                        echo "<td>" . $row->service_type . "</td>";
+                        echo "<td><a href='?id_update=" . $row->id_service_type . "&service=" . $row->service_type . "' class='btn btn-warning'>Update</a><a href='?id_delete=" . $row->id_service_type . "' class='btn btn-danger ml-2'>Delete</a></td></tr>";
+                      }
                     }
                     ?>
                   </tbody>
