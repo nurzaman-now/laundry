@@ -1,3 +1,20 @@
+<?php $location = $_SERVER['REQUEST_URI'];
+if (strpos($location, 'index')) {
+  $index = 'active';
+}
+if (strpos($location, 'service_type')) {
+  $st = 'active';
+}
+if (strpos($location, 'service_upload')) {
+  $su = 'active';
+}
+if (strpos($location, 'order')) {
+  $order = 'active';
+}
+if (strpos($location, 'users')) {
+  $users = 'active';
+}
+?>
 <div class="d-flex" id="wrapper">
   <!-- Sidebar-->
   <div class="border-end bg-white" id="sidebar-wrapper">
@@ -6,11 +23,11 @@
       Laundry Beatiful
     </div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="index.php">Dashboard</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="service_type.php">Service Type</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="service_upload.php">Service Add</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Order</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $index ?>" href="index.php">Dashboard</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $st ?>" href="service_type.php">Service Type</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $su ?>" href="service_upload.php">Service Add</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $order ?>" href="#!">Order</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $users ?>" href="#!">Users</a>
       <a class="list-group-item list-group-item-action list-group-item-danger p-3" href="../logout.php">Logout</a>
     </div>
   </div>
