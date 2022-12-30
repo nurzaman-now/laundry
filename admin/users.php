@@ -2,7 +2,6 @@
 include('component/header.php');
 include('component/navbar.php');
 
-include('../config/crud.php');
 $table = 'users';
 $read = read($table, "*");
 ?>

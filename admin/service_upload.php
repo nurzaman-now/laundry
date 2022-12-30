@@ -2,7 +2,6 @@
 include('component/header.php');
 include('component/navbar.php');
 
-include('../config/crud.php');
 $table = 'service_upload';
 if (isset($_POST['submit'])) {
   extract($_POST);
@@ -157,7 +156,35 @@ $read = read($table, "*",);
                         echo "<td>" . $row->service_name . "</td>";
                         echo "<td>" . $row->dry_price . "</td>";
                         echo "<td>" . $row->laundry_price . "</td>";
-                        echo  "<td><a href='?id_update=" . $row->id_service_upload . "' class='btn btn-warning'><i class='fa fa-pencil' aria-hidden='true'></i></a><a href='?id_delete=" . $row->id_service_upload . "' class='btn btn-danger ml-2'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>";
+                        echo  "<td><a href='?id_update=" . $row->id_service_upload .
+                          "' class='btn btn-warning'><i class='fa fa-pencil' aria-hidden='true'></i></a> <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#delete" . $count . "'><i class='fa fa-trash'></i></button></td></tr>";
+
+                        echo '
+                          <div class="container mt-3">
+                            <div class="modal fade" id="delete' . $count . '">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                  <!-- Modal Header -->
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Konfirmasi</h4>
+                                    <button type="button" class="close" data-dismiss="modal">×</button>
+                                  </div>
+
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                    Apakah anda yakin ingin menghapusnya?
+                                  </div>
+
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <a href="?id_delete="' . $row->id_service_upload . '" class="btn btn-danger ml-2"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>';
                       }
                     }
                     ?>
