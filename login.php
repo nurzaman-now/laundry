@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
 
   include('config/crud.php');
   $table = 'users';
-  $condition = "username='" . $username . "' and password='" . $password . "'";
+  $condition = " WHERE username='" . $username . "' and password='" . $password . "'";
   $read = read($table, "*", $condition);
   if ($read = $read->fetch_object()) {
     session_start();
