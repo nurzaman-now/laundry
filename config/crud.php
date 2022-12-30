@@ -24,8 +24,9 @@ function read($table, $column, $condition = null)
   $db = $GLOBALS['db'];
   $sql = "SELECT " . $column . " FROM " . $table;
   if ($condition) {
-    $sql = $sql . " WHERE " . $condition;
+    $sql = $sql .  $condition;
   }
+  echo ($sql);
   $read = $db->query($sql);
   if ($read->num_rows > 0) {
     return $read;

@@ -5,7 +5,7 @@ include('../config/crud.php');
 $id = $_SESSION['id'];
 $table = 'users';
 $condition = 'id="' . $id . '"';
-$read = read($table, '*', $condition);
+$read = read($table, '*', ' WHERE ' . $condition);
 $row = $read->fetch_object();
 if (isset($_POST['update'])) {
   extract($_POST);
@@ -37,37 +37,35 @@ if (isset($_POST['update'])) {
           </div>
         </div>
       </div>
-      <div id="update" class="collapse">
-        <div class="col-md-6 mb-3">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Update Profile</h4>
-              <form method="POST">
+      <div class="col collapse mb-3" id="update">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Update Profile</h4>
+            <form method="POST">
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" value="<?= $row->username; ?>" required>
+              </div>
+              <div id="pass" class="collapse">
                 <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" value="<?= $row->username; ?>" required>
+                  <label for="password">Password</label>
+                  <input type="text" class="form-control" placeholder="Enter Password" id="password" name="password" value="<?= $row->password; ?>" required>
                 </div>
-                <div id="pass" class="collapse">
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" placeholder="Enter Password" id="password" name="password" value="<?= $row->password; ?>" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="no_telp">No Telpon</label>
-                  <input type="text" class="form-control" placeholder="Enter No Telpon" id="no_telp" name="no_telp" value="<?= $row->no_telp; ?>" required>
-                </div>
-                <div class="form-group">
-                  <label for="address">Alamat</label>
-                  <textarea class="form-control" name="address" id="address" cols="10" rows="3"><?= $row->address; ?></textarea>
-                </div>
+              </div>
+              <div class="form-group">
+                <label for="no_telp">No Telpon</label>
+                <input type="text" class="form-control" placeholder="Enter No Telpon" id="no_telp" name="no_telp" value="<?= $row->no_telp; ?>" required>
+              </div>
+              <div class="form-group">
+                <label for="address">Alamat</label>
+                <textarea class="form-control" name="address" id="address" cols="10" rows="3"><?= $row->address; ?></textarea>
+              </div>
 
-                <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#pass">
-                  <i class="fa fa-key"></i> Ubah password
-                </button>
-                <button type="submit" class="btn btn-primary" name="update">Submit</button>
-              </form>
-            </div>
+              <button type="button" class="btn btn-warning" data-toggle="collapse" data-target="#pass">
+                <i class="fa fa-key"></i> Ubah password
+              </button>
+              <button type="submit" class="btn btn-primary" name="update">Submit</button>
+            </form>
           </div>
         </div>
       </div>
