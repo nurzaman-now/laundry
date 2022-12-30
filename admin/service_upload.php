@@ -7,19 +7,19 @@ if (isset($_POST['submit'])) {
   extract($_POST);
   $column = "service_name,id_service_type,dry_price,laundry_price";
   $value = "'" . $service_name . "','" . $id_service_type . "','" . $dry_price . "','" . $laundry_price . "'";
-  $create = create($table, $column, $value, 'Berhasil Menambahkan data service upload');
+  create($table, $column, $value, 'Berhasil Menambahkan data service upload');
   echo ('<script>window.location= "service_upload.php";</script>');
 }
 if (isset($_POST['update'])) {
   extract($_POST);
   $column = "service_name='" . $service_name . "' , id_service_type='" . $id_service_type . "' , dry_price='" . $dry_price . "' , laundry_price='" . $laundry_price . "'";
   $condition = "id_service_upload=" . $_GET['id_update'];
-  $create = update($table, $column, $condition, 'Berhasil Mengubah data service type');
+  update($table, $column, $condition, 'Berhasil Mengubah data service type');
   echo ('<script>window.location= "service_upload.php";</script>');
 }
 if (isset($_GET['id_delete'])) {
   $condition = "id_service_upload=" . $_GET['id_delete'];
-  $delete = deletedb($table, $condition, "Berhasil menghapus Service type");
+  deletedb($table, $condition, "Berhasil menghapus Service type");
   echo ('<script>window.location= "service_upload.php";</script>');
 }
 $read = read($table, "*",);

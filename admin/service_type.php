@@ -7,19 +7,19 @@ if (isset($_POST['submit'])) {
   extract($_POST);
   $column = "service_type";
   $value = "'" . $service_type . "'";
-  $create = create($table, $column, $value, 'Berhasil Menambahkan data service type');
+  create($table, $column, $value, 'Berhasil Menambahkan data service type');
   echo ('<script>window.location= "service_type.php";</script>');
 }
 if (isset($_POST['update'])) {
   extract($_POST);
   $column = "service_type='" . $service_type . "'";
   $condition = "id_service_type=" . $_GET['id_update'];
-  $create = update($table, $column, $condition, 'Berhasil Mengubah data service type');
+  update($table, $column, $condition, 'Berhasil Mengubah data service type');
   echo ('<script>window.location= "service_type.php";</script>');
 }
 if (isset($_GET['id_delete'])) {
   $condition = "id_service_type=" . $_GET['id_delete'];
-  $delete = deletedb($table, $condition, "Berhasil menghapus Service type");
+  deletedb($table, $condition, "Berhasil menghapus Service type");
   echo ('<script>window.location= "service_type.php";</script>');
 }
 $read = read($table, "*");

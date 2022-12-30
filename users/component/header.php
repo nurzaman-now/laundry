@@ -19,7 +19,7 @@
   <title>Laundry</title>
 </head>
 
-<body class="d-flex flex-column h-100" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center; background-color:deepskyblue;">
+<body class="d-flex flex-column h-100" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
   <?php include('../config/secure.php');
   if ($_SESSION['id_level'] == 1) {
     header("location:../");

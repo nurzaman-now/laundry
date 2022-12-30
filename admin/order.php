@@ -7,7 +7,7 @@ if (isset($_POST['update'])) {
   extract($_POST);
   $column = "status='" . $status . "'";
   $condition = "id_order_detail=" . $_POST['id_order'];
-  $create = update($table, $column, $condition, 'Berhasil Mengubah Status');
+  update($table, $column, $condition, 'Berhasil Mengubah Status');
   echo ('<script>window.location= "order.php";</script>');
 }
 $read = read($table, "*");
