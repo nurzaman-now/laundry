@@ -5,11 +5,12 @@ if ($db->connect_error > 0) {
 } else {
   echo '';
 };
-function create($table, $column, $value, $message)
+function create($table, $column, $value, $message = null)
 {
   $db = $GLOBALS['db'];
   $sql = "INSERT INTO " . $table . " (" . $column . ") VALUES(" . $value . ")";
   $create = $db->query($sql);
+  echo ($sql);
   if ($create) {
     echo ('<script>alert("' . $message . '");</script>');
     return true;
@@ -26,7 +27,6 @@ function read($table, $column, $condition = null)
   if ($condition) {
     $sql = $sql .  $condition;
   }
-  echo ($sql);
   $read = $db->query($sql);
   if ($read->num_rows > 0) {
     return $read;
@@ -41,10 +41,12 @@ function update($table, $column, $condition, $message)
   $sql = "UPDATE " . $table . " SET " . $column . " WHERE " . $condition;
   $update = $db->query($sql);
   if ($update) {
-    echo ('<script>alert("' . $message . '");</script>');
+    if ($message)
+      echo ('<script>alert("' . $message . '");</script>');
     return true;
   } else {
-    echo ('<script>alert("Gagal")</script>');
+    if ($message)
+      echo ('<script>alert("Gagal")</script>');
     return false;
   }
 }

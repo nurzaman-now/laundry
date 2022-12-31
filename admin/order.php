@@ -25,7 +25,7 @@ $read = read($table, "*");
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="table-wrap">
+              <div class="table-wrap table-responsive">
                 <table table id="tables" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                     <tr>

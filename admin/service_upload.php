@@ -134,7 +134,7 @@ $read = read($table, "*",);
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="table-wrap">
+              <div class="table-wrap table-responsive">
                 <table table id="tables" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                     <tr>
@@ -178,7 +178,7 @@ $read = read($table, "*",);
 
                                   <!-- Modal footer -->
                                   <div class="modal-footer">
-                                    <a href="?id_delete="' . $row->id_service_upload . '" class="btn btn-danger ml-2"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <a href="?id_delete=' . $row->id_service_upload . '" class="btn btn-danger ml-2"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                   </div>
 
                                 </div>

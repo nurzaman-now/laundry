@@ -6,12 +6,13 @@ if (isset($_POST['submit'])) {
   $table = 'users';
   $condition = " WHERE username='" . $username . "' and password='" . $password . "'";
   $read = read($table, "*", $condition);
-  if ($read = $read->fetch_object()) {
+  if ($read->num_rows > 0) {
+    $row = $read->fetch_object();
     session_start();
-    $_SESSION['id'] = $read->id;
-    $_SESSION['username'] = $read->username;
-    $_SESSION['id_level'] = $read->id_level;
-    if ($read->id_level == 1) {
+    $_SESSION['id'] = $row->id;
+    $_SESSION['username'] = $row->username;
+    $_SESSION['id_level'] = $row->id_level;
+    if ($row->id_level == 1) {
       echo ('<script>alert("login admin berhasil")</script>');
       header("location:admin/index.php");
     } else {
