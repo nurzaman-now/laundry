@@ -10,12 +10,13 @@ function create($table, $column, $value, $message = null)
   $db = $GLOBALS['db'];
   $sql = "INSERT INTO " . $table . " (" . $column . ") VALUES(" . $value . ")";
   $create = $db->query($sql);
-  echo ($sql);
   if ($create) {
-    echo ('<script>alert("' . $message . '");</script>');
+    if ($message)
+      echo ('<script>alert("' . $message . '");</script>');
     return true;
   } else {
-    echo ('<script>alert("Gagal")</script>');
+    if ($message)
+      echo ('<script>alert("Gagal")</script>');
     return false;
   }
 };
@@ -35,7 +36,7 @@ function read($table, $column, $condition = null)
   }
 }
 
-function update($table, $column, $condition, $message)
+function update($table, $column, $condition, $message = null)
 {
   $db = $GLOBALS['db'];
   $sql = "UPDATE " . $table . " SET " . $column . " WHERE " . $condition;

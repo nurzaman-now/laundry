@@ -7,24 +7,27 @@ $table = 'order_temp';
 $condition = ' JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_upload.id_service_type=service_type.id_service_type WHERE id="' . $id . '" AND ' . 'status_temp="0"';
 $read = read($table, 'id_order_temp, id, total_item, service_upload.id_service_upload, service_name, service_type, dry_price, laundry_price', $condition);
 
-// if (isset($_POST['submit'])) {
-//   // extract($_POST);
-//   $table2 = 'order_detail';
-//   // $column = "order_code, total_price, pick_up, delivery, no_telp, address, status";
-//   // $order_code = 'CO-' . rand();
-//   // $value = "'" . $order_code . "','" . $total . "','" . $pick_up . "','" . $delivery . "','" . $no_telp . "','" . $address . "','0'";
-//   // $create = create($table2, $column, $value, 'Berhasil check out silahkan tunggu pesanan sedang diproses');
-//   // if($create){
-//   $read2 = read($table2, 'id_order_detail');
-//   // $row = $read->fetch_object();
-//   $row2 = $read2->fetch_object();
-//   echo $read2->id_detail_add;
-//   // while ($read) {
-//   // create('order_add', 'id_order_temp', 'id_order_detail', $row[0]->);
-//   // }
-//   //   echo ('<script>window.location= "cart.php";</script>');
-//   // }
-// }
+if (isset($_POST['submit'])) {
+  extract($_POST);
+  $table2 = 'order_detail';
+  $column = "id, order_code, total_price, pick_up, delivery, no_telp, address, status";
+  $order_code = 'CO-' . rand();
+  $value = "'" . $id . "','" . $order_code . "','" . $total . "','" . $pick_up . "','" . $delivery . "','" . $no_telp . "','" . $address . "','0'";
+  $create = create($table2, $column, $value, 'Berhasil check out silahkan tunggu pesanan sedang diproses');
+  if ($create) {
+    $read2 = read($table2, 'id_order_detail', ' WHERE no_telp="' . $no_telp . '"');
+
+    $id_order_detail = 0;
+    while ($row2 = $read2->fetch_object()) {
+      $id_order_detail = $row2->id_order_detail;
+    }
+    while ($row = $read->fetch_object()) {
+      create('order_add', 'id_order_temp, id_order_detail', '"' . $row->id_order_temp . '","' . $id_order_detail . '"');
+      update($table, 'status_temp="1"', 'id_order_temp="' . $row->id_order_temp . '"');
+    }
+  }
+  echo ('<script>window.location= "cart.php";</script>');
+}
 if (isset($_POST['update'])) {
   extract($_POST);
   $column = 'total_item="' . $total_item . '"';
@@ -42,7 +45,16 @@ $rowU = $user->fetch_object();
 ?>
 <main role="main" class="flex-shrink-0">
   <div class="container mt-5 mb-5 pt-5 pb-5" style="min-height: 650px;">
+    <?php
+    $order = read('order_detail', '*', ' WHERE id="' . $id . '"');
+    $order1 = read('order_add', 'id_order_add, service_name, service_type, total_item', ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_temp.id="' . $id . '"');
+    include('check_out.php'); ?>
     <div class="card mb-3">
+      <div class="card-header text-right">
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#check_out">
+          <i class="fa-solid fa-cart-shopping"></i> Pesanan
+        </button>
+      </div>
       <div class="card-body">
         <section class="ftco-section">
           <div class="container">
@@ -150,7 +162,8 @@ $rowU = $user->fetch_object();
         </section>
       </div>
     </div>
-    <?php if ($read->num_rows > 0) { ?>
+    <?php
+    if ($read->num_rows > 0) { ?>
       <div class="card mb-3">
         <div class="card-body">
           <section class="ftco-section">
