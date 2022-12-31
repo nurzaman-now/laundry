@@ -35,7 +35,6 @@
                   if ($order->num_rows > 0) {
                     $count = '1';
                     $total = 0;
-
                     while ($rowO = $order->fetch_object()) {
                       echo "<tr>";
                       echo "<td>" . $count++ . "</td>";
@@ -51,9 +50,9 @@
                       elseif ($rowO->status == 1)
                         echo "<td class='bg-warning'>Diproses</td>";
                       else echo "<td class='bg-success'>Selesai</td>";
-                      echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#checkOut" . $rowO->id_order_add . "'><i class='fa-solid fa-eye'></i></button></td>";
+                      echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#checkOut" . $rowO->id_order_detail . "'><i class='fa-solid fa-eye'></i></button></td>";
                       echo "</tr>";
-                      echo '<div class="modal fade" id="checkOut' . $rowO->id_order_add . '">
+                      echo '<div class="modal fade" id="checkOut' . $rowO->id_order_detail . '">
                               <div class="modal-dialog">
                                 <div class="modal-content">
 
@@ -68,10 +67,15 @@
                                       
                                           <h4 class="card-title">Detail pesanan</h4>
                                           <div class="row">
-                                            <div class="col">Nama Service</div>
-                                            <div class="col">Type Service</div>
-                                            <div class="col">Total barang</div>
+                                            <div class="col"><h5>Nama Service</h5></div>
+                                            <div class="col"><h5>Type Service</h5></div>
+                                            <div class="col"><h5>Total barang</h5></div>
                                           </div>';
+                      $order1 = read(
+                        'order_add',
+                        'order_detail.id_order_detail, id_order_add, service_name, service_type, total_item, status',
+                        ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_temp.id="' . $id . '" AND order_add.id_order_detail="' . $rowO->id_order_detail . '"'
+                      );
                       while ($rowD = $order1->fetch_object()) {
                         echo '
                           <div class="row ">

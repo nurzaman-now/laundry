@@ -11,7 +11,6 @@ if (isset($_POST['update'])) {
   echo ('<script>window.location= "order.php";</script>');
 }
 $read = read($table, "*");
-$order1 = read('order_add', 'id_order_add, order_add.id_order_detail, service_name, service_type, total_item', ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type');
 ?>
 <!-- Page content-->
 <div class="container-fluid pt-3">
@@ -120,6 +119,11 @@ $order1 = read('order_add', 'id_order_add, order_add.id_order_detail, service_na
                                             <div class="col"><h5>Type Service</h5></div>
                                             <div class="col"><h5>Total barang</h5></div>
                                           </div>';
+                          $order1 = read(
+                            'order_add',
+                            'order_detail.id_order_detail, id_order_add, service_name, service_type, total_item, status',
+                            ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_add.id_order_detail="' . $row->id_order_detail . '"'
+                          );
                           while ($rowD = $order1->fetch_object()) {
                             if ($rowD->id_order_detail == $row->id_order_detail)
                               echo '
