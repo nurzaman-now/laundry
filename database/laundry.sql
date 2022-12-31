@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 30 Des 2022 pada 03.06
+-- Waktu pembuatan: 31 Des 2022 pada 07.14
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -52,6 +52,14 @@ CREATE TABLE `order_add` (
   `id_order_detail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `order_add`
+--
+
+INSERT INTO `order_add` (`id_order_add`, `id_order_temp`, `id_order_detail`) VALUES
+(6, 5, 6),
+(7, 6, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +69,7 @@ CREATE TABLE `order_add` (
 CREATE TABLE `order_detail` (
   `id_order_detail` bigint(11) NOT NULL,
   `id` int(11) NOT NULL,
+  `order_code` varchar(22) NOT NULL,
   `total_price` int(25) NOT NULL,
   `pick_up` date NOT NULL,
   `delivery` date NOT NULL,
@@ -73,8 +82,8 @@ CREATE TABLE `order_detail` (
 -- Dumping data untuk tabel `order_detail`
 --
 
-INSERT INTO `order_detail` (`id_order_detail`, `id`, `total_price`, `pick_up`, `delivery`, `no_telp`, `address`, `status`) VALUES
-(1, 2, 30000, '2022-12-30', '2023-01-01', '0987654', 'qwertyuiop', 0);
+INSERT INTO `order_detail` (`id_order_detail`, `id`, `order_code`, `total_price`, `pick_up`, `delivery`, `no_telp`, `address`, `status`) VALUES
+(6, 3, 'CO-1741547902', 77000, '2022-12-31', '2023-01-07', '0987654321', 'jalan mataram', 1);
 
 -- --------------------------------------------------------
 
@@ -85,9 +94,19 @@ INSERT INTO `order_detail` (`id_order_detail`, `id`, `total_price`, `pick_up`, `
 CREATE TABLE `order_temp` (
   `id_order_temp` bigint(11) NOT NULL,
   `id_service_upload` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `total_item` int(11) NOT NULL,
-  `order_code` int(11) NOT NULL
+  `status_temp` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `order_temp`
+--
+
+INSERT INTO `order_temp` (`id_order_temp`, `id_service_upload`, `id`, `total_item`, `status_temp`) VALUES
+(5, 2, 3, 2, 1),
+(6, 3, 3, 3, 1),
+(7, 2, 3, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -127,7 +146,8 @@ CREATE TABLE `service_upload` (
 --
 
 INSERT INTO `service_upload` (`id_service_upload`, `service_name`, `id_service_type`, `dry_price`, `laundry_price`) VALUES
-(2, 'jacket', 19, 2000, 20000);
+(2, 'jacket', 19, 2000, 20000),
+(3, 't-shirt', 1, 1000, 10000);
 
 -- --------------------------------------------------------
 
@@ -149,8 +169,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `address`, `no_telp`, `id_level`) VALUES
-(2, 'admin', 'administrator', 'apapunlah', '1234567', 1),
-(3, 'Sikander', 'sikander', 'qwertyuiop', '0987654321', 2);
+(1, 'admin', 'administrator', 'apapunlah', '1234567', 1),
+(2, 'Sikander', 'sikander', 'jalan mataram', '0987654321', 2);
 
 --
 -- Indexes for dumped tables
@@ -214,19 +234,19 @@ ALTER TABLE `level_users`
 -- AUTO_INCREMENT untuk tabel `order_add`
 --
 ALTER TABLE `order_add`
-  MODIFY `id_order_add` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_add` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id_order_detail` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_order_detail` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id_order_temp` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_order_temp` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `service_type`
@@ -238,7 +258,7 @@ ALTER TABLE `service_type`
 -- AUTO_INCREMENT untuk tabel `service_upload`
 --
 ALTER TABLE `service_upload`
-  MODIFY `id_service_upload` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_service_upload` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
