@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 31 Des 2022 pada 07.14
+-- Waktu pembuatan: 31 Des 2022 pada 07.19
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -83,7 +83,7 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`id_order_detail`, `id`, `order_code`, `total_price`, `pick_up`, `delivery`, `no_telp`, `address`, `status`) VALUES
-(6, 3, 'CO-1741547902', 77000, '2022-12-31', '2023-01-07', '0987654321', 'jalan mataram', 1);
+(6, 2, 'CO-1741547902', 77000, '2022-12-31', '2023-01-07', '0987654321', 'jalan mataram', 1);
 
 -- --------------------------------------------------------
 
@@ -104,9 +104,8 @@ CREATE TABLE `order_temp` (
 --
 
 INSERT INTO `order_temp` (`id_order_temp`, `id_service_upload`, `id`, `total_item`, `status_temp`) VALUES
-(5, 2, 3, 2, 1),
-(6, 3, 3, 3, 1),
-(7, 2, 3, 2, 0);
+(5, 2, 2, 2, 1),
+(6, 3, 2, 3, 1);
 
 -- --------------------------------------------------------
 

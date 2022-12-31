@@ -47,7 +47,7 @@ $rowU = $user->fetch_object();
   <div class="container mt-5 mb-5 pt-5 pb-5" style="min-height: 650px;">
     <?php
     $order = read('order_detail', '*', ' WHERE id="' . $id . '"');
-    $order1 = read('order_add', 'id_order_add, service_name, service_type, total_item', ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_temp.id="' . $id . '"');
+    $order1 = read('order_add', 'id_order_add, service_name, service_type, total_item, status', ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_temp.id="' . $id . '"');
     include('check_out.php'); ?>
     <div class="card mb-3">
       <div class="card-header text-right">

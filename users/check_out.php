@@ -46,11 +46,11 @@
                       echo "<td>" . $rowO->delivery . "</td>";
                       echo "<td>" . $rowO->no_telp . "</td>";
                       echo "<td>" . $rowO->address . "</td>";
-                      if ($rowO->status_temp == 0)
-                        echo "<td>Menunggu</td>";
-                      elseif ($rowO->status_temp == 1)
-                        echo "<td>Diproses</td>";
-                      else echo "<td>Selesai</td>";
+                      if ($rowO->status == 0)
+                        echo "<td class='bg-primary'>Menunggu</td>";
+                      elseif ($rowO->status == 1)
+                        echo "<td class='bg-warning'>Diproses</td>";
+                      else echo "<td class='bg-success'>Selesai</td>";
                       echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#checkOut" . $rowO->id_order_add . "'><i class='fa-solid fa-eye'></i></button></td>";
                       echo "</tr>";
                       echo '<div class="modal fade" id="checkOut' . $rowO->id_order_add . '">
