@@ -29,8 +29,9 @@ $read = read($table, "*",);
   <div class="card mb-2">
     <div class="card-body">
       <!-- mengubah data -->
-      <?php if (isset($_GET['id_update'])) {
-        $read_update = read($table, "*", "id_service_upload='" . $_GET['id_update'] . "'");
+      <?php
+      if (isset($_GET['id_update'])) {
+        $read_update = read($table, "*", " WHERE id_service_upload='" . $_GET['id_update'] . "'");
         $row_update = $read_update->fetch_object();
       ?>
         <h4 class="card-title">Mengubah Service Upload</h4>
