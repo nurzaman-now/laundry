@@ -1,3 +1,8 @@
+<?php include('../config/secure.php');
+if ($_SESSION['id_level'] == 1) {
+  header("location:../");
+}
+?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 
@@ -21,8 +26,3 @@
 </head>
 
 <body class="d-flex flex-column h-100" style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-  <?php include('../config/secure.php');
-  if ($_SESSION['id_level'] == 1) {
-    header("location:../");
-  }
-  ?>

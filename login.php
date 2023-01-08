@@ -1,4 +1,5 @@
 <?php
+ob_start();
 if (isset($_POST['submit'])) {
   extract($_POST);
 

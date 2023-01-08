@@ -45,21 +45,20 @@ $read = read($table, "*");
                     if ($read->num_rows > 0) {
                       $count = '1';
                       while ($row = $read->fetch_object()) {
-                        if ($row->id_level != 1) {
-                          echo '<tr>';
-                          echo '<td>' . $count++ . '</td>';
-                          echo '<td>' . $row->id . '</td>';
-                          echo '<td>' . $row->total_price . '</td>';
-                          echo '<td>' . $row->pick_up . '</td>';
-                          echo '<td>' . $row->delivery . '</td>';
-                          echo '<td>' . $row->no_telp . '</td>';
-                          echo '<td>' . $row->address . '</td>';
-                          $stat = ['menunggu', 'pengambilan', 'pengiriman'];
-                          $class = ['btn-primary', 'btn-warning', 'btn-success'];
-                          echo '<td><button type="button" class="btn ' . $class[$row->status] . '" data-toggle="modal" data-target="#myModal' . $row->id_order_detail . '">' . $stat[$row->status] . '</button></td>';
-                          echo '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkOut' . $row->id_order_detail . '"><i class="fa-solid fa-eye"></i></button></td>';
-                          echo '</tr>';
-                          echo '
+                        echo '<tr>';
+                        echo '<td>' . $count++ . '</td>';
+                        echo '<td>' . $row->id . '</td>';
+                        echo '<td>' . $row->total_price . '</td>';
+                        echo '<td>' . $row->pick_up . '</td>';
+                        echo '<td>' . $row->delivery . '</td>';
+                        echo '<td>' . $row->no_telp . '</td>';
+                        echo '<td>' . $row->address . '</td>';
+                        $stat = ['menunggu', 'pengambilan', 'pengiriman'];
+                        $class = ['btn-primary', 'btn-warning', 'btn-success'];
+                        echo '<td><button type="button" class="btn ' . $class[$row->status] . '" data-toggle="modal" data-target="#myModal' . $row->id_order_detail . '">' . $stat[$row->status] . '</button></td>';
+                        echo '<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#checkOut' . $row->id_order_detail . '"><i class="fa-solid fa-eye"></i></button></td>';
+                        echo '</tr>';
+                        echo '
                           <div class="container mt-3">
                             <div class="modal fade" id="myModal' . $row->id_order_detail . '">
                               <div class="modal-dialog">
@@ -78,14 +77,14 @@ $read = read($table, "*");
                                         <label for="status">Status</label>
                                         <input type="hidden" name="id_order" value="' . $row->id_order_detail . '">
                                         <select name="status" id="status" class="form-control">';
-                          for ($i = 0; $i < 3; $i++) {
-                            echo '<option value="' . $i . '"';
-                            if ($row->status == $i) {
-                              echo 'selected';
-                            }
-                            echo '>' . $stat[$i] . '</option>';
+                        for ($i = 0; $i < 3; $i++) {
+                          echo '<option value="' . $i . '"';
+                          if ($row->status == $i) {
+                            echo 'selected';
                           }
-                          echo '              
+                          echo '>' . $stat[$i] . '</option>';
+                        }
+                        echo '              
                                         </select>
                                       </div>
                                     </div>
@@ -100,7 +99,7 @@ $read = read($table, "*");
                               </div>
                             </div>
                           </div> ';
-                          echo '<div class="modal fade" id="checkOut' . $row->id_order_detail . '">
+                        echo '<div class="modal fade" id="checkOut' . $row->id_order_detail . '">
                               <div class="modal-dialog">
                                 <div class="modal-content">
 
@@ -119,28 +118,27 @@ $read = read($table, "*");
                                             <div class="col"><h5>Type Service</h5></div>
                                             <div class="col"><h5>Total barang</h5></div>
                                           </div>';
-                          $order1 = read(
-                            'order_add',
-                            'order_detail.id_order_detail, id_order_add, service_name, service_type, total_item, status',
-                            ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_add.id_order_detail="' . $row->id_order_detail . '"'
-                          );
-                          while ($rowD = $order1->fetch_object()) {
-                            if ($rowD->id_order_detail == $row->id_order_detail)
-                              echo '
+                        $order1 = read(
+                          'order_add',
+                          'order_detail.id_order_detail, id_order_add, service_name, service_type, total_item, status',
+                          ' JOIN order_temp on order_temp.id_order_temp=order_add.id_order_temp JOIN order_detail ON order_detail.id_order_detail=order_add.id_order_detail JOIN service_upload ON service_upload.id_service_upload=order_temp.id_service_upload JOIN service_type ON service_type.id_service_type=service_upload.id_service_type WHERE order_add.id_order_detail="' . $row->id_order_detail . '"'
+                        );
+                        while ($rowD = $order1->fetch_object()) {
+                          if ($rowD->id_order_detail == $row->id_order_detail)
+                            echo '
                           <div class="row ">
                             <div class="col">' . $rowD->service_name . '</div>
                             <div class="col">' . $rowD->service_type . '</div>
                             <div class="col">' . $rowD->total_item . '</div>
                           </div>
                           ';
-                          }
-                          echo '
+                        }
+                        echo '
                                     </div>
                                   </div>
                                 </div>
                               </div>
                       ';
-                        }
                       }
                     }
                     ?>

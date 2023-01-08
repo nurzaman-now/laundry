@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['id_level'] != 1) {
+  header("location:../");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +30,3 @@
 </head>
 
 <body style="background-image: url('../images/laundry_image.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
-  <?php
-  session_start();
-  if ($_SESSION['id_level'] != 1) {
-    header("location:../");
-  }
