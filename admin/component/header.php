@@ -1,6 +1,8 @@
 <?php
 session_start();
-if ($_SESSION['id_level'] != 1) {
+if (!$_SESSION) {
+  header("location:../");
+} elseif ($_SESSION['id_level'] != 1) {
   header("location:../");
 }
 ?>

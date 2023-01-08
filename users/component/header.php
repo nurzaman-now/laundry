@@ -1,5 +1,10 @@
-<?php include('../config/secure.php');
-if ($_SESSION['id_level'] == 1) {
+<?php
+session_start();
+if (!$_SESSION) {
+  header("location:../");
+} elseif (!isset($_SESSION['username'])) {
+  header("location:../logout.php");
+} elseif ($_SESSION['id_level'] == 1) {
   header("location:../");
 }
 ?>
