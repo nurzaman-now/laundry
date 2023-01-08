@@ -48,7 +48,7 @@ $read = read($table, "*",);
                 <label for="id_service_type">Type Service</label>
                 <select name="id_service_type" id="id_service_type" class="form-control">
                   <?php $read_type = read("service_type", "*");
-                  if ($read_type->num_rows > 0) {
+                  if ($read_type) {
                     while ($row = $read_type->fetch_object()) {
                       $selected = '';
                       if ($row_update->id_service_type == $row->id_service_type) {
@@ -95,7 +95,7 @@ $read = read($table, "*",);
                 <label for="id_service_type">Type Service</label>
                 <select name="id_service_type" id="id_service_type" class="form-control">
                   <?php $read_type = read("service_type", "*");
-                  if ($read_type->num_rows > 0) {
+                  if ($read_type) {
                     while ($row = $read_type->fetch_object()) {
                       echo "<option value=" . $row->id_service_type . ">" . $row->service_type . "</option>";
                     }
@@ -149,7 +149,7 @@ $read = read($table, "*",);
                   </thead>
                   <tbody>
                     <?php
-                    if ($read->num_rows > 0) {
+                    if ($read) {
                       $count = '1';
                       while ($row = $read->fetch_object()) {
                         echo "<tr><td>" . $count++ . "</td>";

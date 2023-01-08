@@ -32,7 +32,7 @@
                 </thead>
                 <tbody>
                   <?php
-                  if ($order->num_rows > 0) {
+                  if ($order) {
                     $count = '1';
                     $total = 0;
                     while ($rowO = $order->fetch_object()) {

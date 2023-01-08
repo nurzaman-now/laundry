@@ -79,7 +79,7 @@ $rowU = $user->fetch_object();
                     </thead>
                     <tbody>
                       <?php
-                      if ($read->num_rows > 0) {
+                      if ($read) {
                         $count = '1';
                         $total = 0;
                         while ($row = $read->fetch_object()) {
@@ -162,7 +162,7 @@ $rowU = $user->fetch_object();
       </div>
     </div>
     <?php
-    if ($read->num_rows > 0) { ?>
+    if ($read) { ?>
       <div class="card mb-3">
         <div class="card-body">
           <section class="ftco-section">

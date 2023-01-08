@@ -74,7 +74,7 @@ $read = read($table, "*");
                   </thead>
                   <tbody>
                     <?php
-                    if ($read->num_rows > 0) {
+                    if ($read) {
                       $count = '1';
                       while ($row = $read->fetch_object()) {
                         echo "<tr><td>" . $count++ . "</td>";

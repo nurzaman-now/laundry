@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
   $table = 'users';
   $condition = " WHERE username='" . $username . "' and password='" . $password . "'";
   $read = read($table, "*", $condition);
-  if ($read->num_rows > 0) {
+  if ($read) {
     $row = $read->fetch_object();
     session_start();
     $_SESSION['id'] = $row->id;

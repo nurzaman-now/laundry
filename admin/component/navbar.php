@@ -29,7 +29,7 @@ $badge = read($tab, '*');
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $index ?>" href="index.php"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $st ?>" href="service_type.php"><i class="fa fa-gear" aria-hidden="true"></i> Service Type</a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $su ?>" href="service_upload.php"><i class="fa fa-gear" aria-hidden="true"></i> Service Add</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $order ?>" href="order.php"><i class="fa fa-shopping-basket"></i> Order <span class="badge badge-pill badge-warning text-dark"><?= $badge->num_rows ?></span></a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $order ?>" href="order.php"><i class="fa fa-shopping-basket"></i> Order <span class="badge badge-pill badge-warning text-dark"><?php if ($badge) $badge->num_rows ?></span></a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3 <?= $users ?>" href="users.php"><i class="fa fa-users"></i> Users</a>
       <button type="button" class="list-group-item list-group-item-action list-group-item-danger p-3" data-toggle="modal" data-target="#logout">
         <i class="fa fa-power-off"></i> Logout
