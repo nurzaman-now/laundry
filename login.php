@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
 
   include('config/crud.php');
   $table = 'users';
-  $condition = " WHERE username='" . $username . "' and password='" . $password . "'";
+  $condition = " WHERE email='" . $email . "' and password='" . $password . "'";
   $read = read($table, "*", $condition);
   if ($read) {
     $row = $read->fetch_object();
@@ -38,14 +38,19 @@ include('component/navbar.php');
             <form action="" method="POST">
               <h2 class="card-title">Login</h2>
               <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" required>
               </div>
-              <div class=" form-group">
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
               </div>
-              <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+              <div class="mb-3">
+                Lupa pasword? <a href="forgot.php" class="card-link">Klik disini</a>
+              </div>
+              <div class="">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+              </div>
             </form>
           </div>
         </div>

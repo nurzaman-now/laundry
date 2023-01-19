@@ -4,9 +4,11 @@ if (isset($_POST['submit'])) {
 
   include('config/crud.php');
   $table = 'users';
-  $column = "username, password, address, no_telp, id_level";
-  $value = "'" . $username . "','" . $password . "','" . $address . "','" . $no_telp . "', '2'";
-  create($table, $column, $value, 'Berhasil Registrasi');
+  $column = "email, username, password, address, no_telp, id_level";
+  $value = "'" . $email . "','" . $username . "','" . $password . "','" . $address . "','" . $no_telp . "', '2'";
+  $create = create($table, $column, $value, 'Berhasil Registrasi silahkan login');
+  if ($create)
+    header("location:login.php");
 }
 include('component/header.php');
 include('component/navbar.php');
@@ -20,6 +22,10 @@ include('component/navbar.php');
           <div class="card-body">
             <form action="" method="POST">
               <h2 class="card-title">Register</h2>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
               <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>

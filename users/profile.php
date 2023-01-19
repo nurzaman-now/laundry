@@ -9,7 +9,7 @@ $read = read($table, '*', ' WHERE ' . $condition);
 $row = $read->fetch_object();
 if (isset($_POST['update'])) {
   extract($_POST);
-  $column = "username='" . $username . "',password='" . $password . "', no_telp='" . $no_telp . "', address='" . $address . "'";
+  $column = "email='" . $email . "',username='" . $username . "',password='" . $password . "', no_telp='" . $no_telp . "', address='" . $address . "'";
   update($table, $column, $condition, 'Berhasil Mengubah Profile');
   echo ('<script>window.location= "profile.php";</script>');
 }
@@ -42,6 +42,10 @@ if (isset($_POST['update'])) {
           <div class="card-body">
             <h4 class="card-title">Update Profile</h4>
             <form method="POST">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Enter Email" id="email" name="email" value="<?= $row->email; ?>" required>
+              </div>
               <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" value="<?= $row->username; ?>" required>

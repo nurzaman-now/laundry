@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 31 Des 2022 pada 07.19
+-- Waktu pembuatan: 19 Jan 2023 pada 15.23
 -- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.1.12
+-- Versi PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `laundry`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `forgot_password`
+--
+
+CREATE TABLE `forgot_password` (
+  `id_forgotpw` bigint(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `token` varchar(11) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -58,7 +71,9 @@ CREATE TABLE `order_add` (
 
 INSERT INTO `order_add` (`id_order_add`, `id_order_temp`, `id_order_detail`) VALUES
 (6, 5, 6),
-(7, 6, 6);
+(7, 6, 6),
+(8, 8, 7),
+(9, 9, 7);
 
 -- --------------------------------------------------------
 
@@ -83,7 +98,8 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`id_order_detail`, `id`, `order_code`, `total_price`, `pick_up`, `delivery`, `no_telp`, `address`, `status`) VALUES
-(6, 2, 'CO-1741547902', 77000, '2022-12-31', '2023-01-07', '0987654321', 'jalan mataram', 1);
+(6, 2, 'CO-1741547902', 77000, '2022-12-31', '2023-01-07', '0987654321', 'jalan mataram', 1),
+(7, 5, 'CO-2034356135', 33000, '2023-01-20', '2023-01-21', '0823141526', 'jln buntu', 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +121,9 @@ CREATE TABLE `order_temp` (
 
 INSERT INTO `order_temp` (`id_order_temp`, `id_service_upload`, `id`, `total_item`, `status_temp`) VALUES
 (5, 2, 2, 2, 1),
-(6, 3, 2, 3, 1);
+(6, 3, 2, 3, 1),
+(8, 3, 5, 1, 1),
+(9, 2, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -156,6 +174,7 @@ INSERT INTO `service_upload` (`id_service_upload`, `service_name`, `id_service_t
 
 CREATE TABLE `users` (
   `id` bigint(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `address` text NOT NULL,
@@ -167,13 +186,19 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `address`, `no_telp`, `id_level`) VALUES
-(1, 'admin', 'administrator', 'apapunlah', '1234567', 1),
-(2, 'Sikander', 'sikander', 'jalan mataram', '0987654321', 2);
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `address`, `no_telp`, `id_level`) VALUES
+(1, 'imannj69@gmail.com', 'admin', 'administrator', 'apapunlah', '1234567', 1),
+(2, 'imannurzaman39@gmail.com', 'Sikander', 'sikander', 'jalan mataram', '0987654321', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  ADD PRIMARY KEY (`id_forgotpw`);
 
 --
 -- Indeks untuk tabel `level_users`
@@ -217,11 +242,17 @@ ALTER TABLE `service_upload`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `email` (`email`,`username`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `forgot_password`
+--
+ALTER TABLE `forgot_password`
+  MODIFY `id_forgotpw` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `level_users`
@@ -233,19 +264,19 @@ ALTER TABLE `level_users`
 -- AUTO_INCREMENT untuk tabel `order_add`
 --
 ALTER TABLE `order_add`
-  MODIFY `id_order_add` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_order_add` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id_order_detail` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_order_detail` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `order_temp`
 --
 ALTER TABLE `order_temp`
-  MODIFY `id_order_temp` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_order_temp` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `service_type`
@@ -263,7 +294,7 @@ ALTER TABLE `service_upload`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
