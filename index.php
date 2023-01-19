@@ -13,11 +13,6 @@ include('component/navbar.php');
         <p class="lead">Memesan cepat secara online, siap Pick Up dan Delivery.</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-4 mr-5">
-
-      </div>
-    </div>
   </div>
 </div>
 <?php

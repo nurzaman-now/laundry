@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 19 Jan 2023 pada 15.23
+-- Waktu pembuatan: 19 Jan 2023 pada 15.43
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -187,7 +187,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `address`, `no_telp`, `id_level`) VALUES
-(1, 'imannj69@gmail.com', 'admin', 'administrator', 'apapunlah', '1234567', 1),
+(1, 'adminlaundry@laundrybeatiful.my.id', 'admin', 'administrator', 'apapunlah', '1234567', 1),
 (2, 'imannurzaman39@gmail.com', 'Sikander', 'sikander', 'jalan mataram', '0987654321', 2);
 
 --
