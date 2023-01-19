@@ -29,19 +29,29 @@ include('component/navbar.php');
         </style>
       </div>
 
-      <div class="card-body">
-        <h5 class="card-title">Hubungi Kami</h5>
-        <p class="card-text">Untuk info lebih lanjut</p>
-      </div>
       <?php
       include 'config/crud.php';
       $read = read('users', "*", ' WHERE id_level="1"');
       $row = $read->fetch_object()  ?>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Email : <?= $row->email ?> </li>
-        <li class="list-group-item">No Telpon : <?= $row->no_telp ?></li>
-        <li class="list-group-item">Alamat : <?= $row->address ?></li>
-      </ul>
+
+      <div class="card-body">
+        <h5 class="card-title">Hubungi Kami</h5>
+        <p class="card-text">Untuk info lebih lanjut</p>
+        <table class="table">
+          <tr>
+            <td><i class="fa-solid fa-location-dot fa-lg"></i> Alamat</td>
+            <td> : <?= $row->address ?></td>
+          </tr>
+          <tr class="mb-5">
+            <td><i class="fa-solid fa-envelope fa-lg"></i> Email</td>
+            <td> : <?= $row->email ?></td>
+          </tr>
+          <tr class="mb-5">
+            <td><i class="fa-brands fa-whatsapp fa-lg"></i> Whatsapp</td>
+            <td> : <?= $row->no_telp ?></td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
