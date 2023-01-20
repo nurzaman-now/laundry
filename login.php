@@ -13,15 +13,18 @@ if (isset($_POST['submit'])) {
     if (password_verify($password, $row->password)) {
       $_SESSION['id'] = $row->id;
       $_SESSION['username'] = $row->username;
+      $_SESSION['email'] = $row->email;
       $_SESSION['id_level'] = $row->id_level;
       if ($row->id_level == 1 && $row->active) {
         echo ('<script>alert("login admin berhasil")
         window.location.href="admin/index.php"</script>');
       } elseif ($row->active) {
-        echo ('<script>alert("login berhasil")</script>');
-        header("location:users/index.php");
+        echo ('<script>alert("login berhasil");
+        window.location.href="users/index.php"</script>');
       } else {
-        echo ('<script>alert("Akun anda belum diaktivasi. silahkan aktivasi terlebih dahulu")window.location.href="verify.php"</script>');
+        echo ('<script>
+        alert("Akun anda belum diaktivasi. silahkan aktivasi terlebih dahulu"); 
+        window.location.href="verify.php"</script>');
       }
     } else {
       echo ('<script>alert("login gagal")</script>');
