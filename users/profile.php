@@ -9,7 +9,13 @@ $read = read($table, '*', ' WHERE ' . $condition);
 $row = $read->fetch_object();
 if (isset($_POST['update'])) {
   extract($_POST);
-  $column = "email='" . $email . "',username='" . $username . "',password='" . $password . "', no_telp='" . $no_telp . "', address='" . $address . "'";
+  $ifpass = '';
+  if ($password){
+    $pass = password_hash($password, PASSWORD_DEFAULT);
+    $ifpass = ",password='" . $pass . "'";
+  }
+
+  $column = "email='" . $email . "',username='" . $username . "', no_telp='" . $no_telp . "', address='" . $address . "'" . $ifpass;
   update($table, $column, $condition, 'Berhasil Mengubah Profile');
   echo ('<script>window.location= "profile.php";</script>');
 }
@@ -53,7 +59,7 @@ if (isset($_POST['update'])) {
               <div id="pass" class="collapse">
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="text" class="form-control" placeholder="Enter Password" id="password" name="password" value="<?= $row->password; ?>" required>
+                  <input type="text" class="form-control" placeholder="Enter Password" id="password" name="password" value="">
                 </div>
               </div>
               <div class="form-group">
