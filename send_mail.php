@@ -25,15 +25,7 @@ function smtp_mail($to, $subject, $message, $from_name, $from)
   $mail->Port = 587;                                    // TCP port to connect to
 
   $mail->setFrom('adminlaundry@laundrybeatiful.my.id', $from_name);
-  // $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
   $mail->addAddress($to);               // Name is optional
-  // $mail->addReplyTo($to, 'Information');
-  // $mail->addCC('cc@example.com');
-  // $mail->addBCC('bcc@example.com');
-
-  // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-  // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-  $mail->isHTML(true);                                  // Set email format to HTML
 
   $mail->Subject = $subject;
   $mail->Body    = $message;
