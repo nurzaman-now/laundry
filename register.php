@@ -3,12 +3,20 @@ if (isset($_POST['submit'])) {
   extract($_POST);
 
   include('config/crud.php');
+  include('send_mail.php');
   $table = 'users';
   $column = "email, username, password, address, no_telp, id_level";
+  $password = password_hash($password, PASSWORD_DEFAULT);
   $value = "'" . $email . "','" . $username . "','" . $password . "','" . $address . "','" . $no_telp . "', '2'";
   $create = create($table, $column, $value, 'Berhasil Registrasi silahkan login');
-  if ($create)
+  if ($create) {
+    $token = random_int(0, 9999);
+    $create = create('token', 'id, token, tanggal', '"' . $_SESSION['id'] . '","' . $token . '","' . date("Y-m-d h:m:s", time()) . '"');
+    $message = '<h2>Untuk memverifikasi akun anda silahkan klik disini 
+      <a href="' . $_SERVER["SERVER_NAME"] . '/verifing.php?id=' . $_SESSION['id'] . '&token=' . $token . '">Klik disini!</a></h2>';
+    smtp_mail($email, 'Account Verification', $message, 'Admin Laundry Beautiful');
     header("location:login.php");
+  }
 }
 include('component/header.php');
 include('component/navbar.php');
