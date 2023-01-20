@@ -50,6 +50,9 @@ include('component/navbar.php');
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Silahkan masukan email sesuai akun anda" required>
               </div>
+              <div class="mb-3">
+                Sudah punya token? <a href="forgot_next.php" class="card-link">Klik disini</a>
+              </div>
               <button type="submit" class="btn btn-primary" name="submit">Submit</button>
             </form>
           </div>
