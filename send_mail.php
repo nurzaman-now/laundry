@@ -1,16 +1,10 @@
-<form action="" method="post">
-  <button type="submit" name="submit">kirim</button>
-</form>
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
 
 require 'vendor/autoload.php';
 
-if (isset($_POST['submit'])) {
-  smtp_mail('imannurzaman39@gmail.com', 'token', 'apapun', 'Admin Laundry', '');
-}
-function smtp_mail($to, $subject, $message, $from_name, $from)
+function smtp_mail($to, $subject, $message, $from_name)
 {
   $mail = new PHPMailer;
 
@@ -27,15 +21,13 @@ function smtp_mail($to, $subject, $message, $from_name, $from)
   $mail->setFrom('adminlaundry@laundrybeatiful.my.id', $from_name);
   $mail->addAddress($to);               // Name is optional
 
+  $mail->isHTML();
   $mail->Subject = $subject;
   $mail->Body    = $message;
-  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
   if (!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
+    return false;
   } else {
-    echo 'Message has been sent';
+    return true;
   }
 }
-?>
