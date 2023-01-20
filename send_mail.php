@@ -1,21 +1,23 @@
+<form action="" method="post">
+  <button type="submit" name="submit">kirim</button>
+</form>
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 
 require 'vendor/autoload.php';
 
 if (isset($_POST['submit'])) {
-  smtp_mail('imannurzaman39@gmail.com', 'token', 'apapun', '', '');
+  smtp_mail('imannurzaman39@gmail.com', 'token', 'apapun', 'Admin Laundry', '');
 }
 function smtp_mail($to, $subject, $message, $from_name, $from)
 {
   $mail = new PHPMailer;
 
-  //$mail->SMTPDebug = 3;                               // Enable verbose debug output
+  // $mail->SMTPDebug = true;                               // Enable verbose debug output
 
   $mail->isSMTP();                                      // Set mailer to use SMTP
-  $mail->Host = 'laundrybeautiful.my.id';  // Specify main and backup SMTP servers
+  $mail->Host = 'laundrybeautiful.my.id;103.131.50.95;pingit.jogjahost.com';  // Specify main and backup SMTP servers
   $mail->SMTPAuth = true;                               // Enable SMTP authentication
   $mail->Username = 'adminlaundry@laundrybeatiful.my.id';                 // SMTP username
   $mail->Password = 'laundrybeatiful04';                           // SMTP password
@@ -45,7 +47,3 @@ function smtp_mail($to, $subject, $message, $from_name, $from)
   }
 }
 ?>
-
-<form action="" method="post">
-  <button type="submit" name="submit">kirim</button>
-</form>

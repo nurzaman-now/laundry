@@ -1,4 +1,5 @@
 <?php
+// $db = new MYSQLi("localhost", "laundryb_dress", "cucipakaian123", "laundryb_dress");
 $db = new MYSQLi("localhost", "root", "", "laundry");
 if ($db->connect_error > 0) {
   die('Connection error');

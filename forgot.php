@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     // create token
     // $create = create('forgot_password', 'id, token, tanggal', '"' . $users[1][0] . '","' . $token . '","' . date("Y-m-d h:m:s", time()) . '"');
     // if ($create) {
-    send($users[0][1], $users[1][1], 'Forgot Password',  'token anda untuk mengubah password' . $token, 'Berhasil Mengirimkan token untuk merubah pasword');
+    // send($users[0][1], $users[1][1], 'Forgot Password',  'token anda untuk mengubah password' . $token, 'Berhasil Mengirimkan token untuk merubah pasword');
     header("location:login.php");
     // } else {
     //   echo ('<script>alert("Gagal")</script>');
