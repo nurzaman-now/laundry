@@ -19,7 +19,7 @@
         <a class="nav-link" href="register.php">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="readme.php">Tutorial</a>
+        <a class="nav-link" href="tutorial.php">Tutorial</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="about.php">About</a>
