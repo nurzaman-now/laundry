@@ -16,14 +16,18 @@ if (isset($_POST['submit'])) {
     }
     // echo ('<script>alert("' . $users[1][0] . ',' . $token . ',' . date("Y-m-d h:m:s", time()) . '")</script>');
     // create token
-    // $create = create('forgot_password', 'id, token, tanggal', '"' . $users[1][0] . '","' . $token . '","' . date("Y-m-d h:m:s", time()) . '"');
-    // if ($create) {
-    // send($users[0][1], $users[1][1], 'Forgot Password',  'token anda untuk mengubah password' . $token, 'Berhasil Mengirimkan token untuk merubah pasword');
-    header("location:login.php");
-    // } else {
-    //   echo ('<script>alert("Gagal")</script>');
-    //   header("location:forgot.php");
-    // }
+    $create = create('token', 'id, token, tanggal', '"' . $users[1][0] . '","' . $token . '","' . date("Y-m-d h:m:s", time()) . '"');
+    if ($create) {
+      $smtp = smtp_mail($users[1][1], 'Forgot Password', '<h2>token anda untuk mengubah password adalah : ' . $token . '</h2>', 'Admin Laundry Beautiful');
+      if ($smtp)
+        echo ('<script>
+        alert("Kode Verifikasi sudah dikirim")
+        window.location.href="forgot_next.php";
+        </script>');
+    } else {
+      echo ('<script>alert("Gagal")</script>');
+      header("location:forgot.php");
+    }
   } else {
     echo ('<script>alert("Gagal")</script>');
     header("location:forgot.php");
